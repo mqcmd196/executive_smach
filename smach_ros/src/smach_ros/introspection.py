@@ -132,13 +132,15 @@ class ContainerProxy():
         self._structure_pub = rospy.Publisher(
                 name=server_name + STRUCTURE_TOPIC,
                 data_class=SmachContainerStructure,
-                queue_size=1)
+                queue_size=1,
+                latch=True)
 
         # Advertise status publisher
         self._status_pub = rospy.Publisher(
                 name=server_name + STATUS_TOPIC,
                 data_class=SmachContainerStatus,
-                queue_size=1)
+                queue_size=1,
+                latch=True)
 
         # Set transition callback
         container.register_transition_cb(self._transition_cb)
